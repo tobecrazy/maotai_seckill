@@ -27,11 +27,19 @@ class Timer(object):
         """
         从京东服务器获取时间毫秒
         :return:
+        // https://api.m.jd.com/client.action?functionId=queryMaterialProducts&client=wh5
+{
+  "currentTime": "2021-07-18 19:29:34",
+  "currentTime2": "1626607774555",
+  "returnMsg": "empty parameter ids",
+  "code": "0",
+  "subCode": "1-3"
+}
         """
-        url = 'https://a.jd.com//ajax/queryServerData.html'
+        url = 'https://api.m.jd.com/client.action?functionId=queryMaterialProducts&client=wh5'
         ret = requests.get(url).text
-        js = json.loads(ret)
-        return int(js["serverTime"])
+        resut_to_json = json.loads(ret)
+        return int(resut_to_json["currentTime2"])
 
     def local_time(self):
         """

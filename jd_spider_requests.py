@@ -155,6 +155,7 @@ class QrLogin:
     def _get_qrcode(self):
         """
         缓存并展示登录二维码
+        https://qr.m.jd.com/show?appid=133&size=147&t=1626599885024
         :return:
         """
         url = 'https://qr.m.jd.com/show'
