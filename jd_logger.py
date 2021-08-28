@@ -1,5 +1,6 @@
 import logging
 import logging.handlers
+# -*- encoding=utf8 -*-
 '''
 日志模块
 '''
