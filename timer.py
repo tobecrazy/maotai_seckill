@@ -35,10 +35,12 @@ class Timer(object):
   "code": "0",
   "subCode": "1-3"
 }
-        """
+"""
         url = 'https://api.m.jd.com/client.action?functionId=queryMaterialProducts&client=wh5'
-        ret = requests.get(url).text
+        ret = requests.get(url,headers='').text
+        print(ret)
         resut_to_json = json.loads(ret)
+        print(resut_to_json)
         return int(resut_to_json["currentTime2"])
 
     def local_time(self):
@@ -56,7 +58,8 @@ class Timer(object):
         return self.local_time() - self.jd_time()
 
     def start(self):
-        logger.info('正在等待到达设定时间:{}，检测本地时间与京东服务器时间误差为【{}】毫秒'.format(self.buy_time, self.diff_time))
+        logger.info(
+            '正在等待到达设定时间:{}，检测本地时间与京东服务器时间误差为【{}】毫秒'.format(self.buy_time, self.diff_time))
         while True:
             # 本地时间减去与京东的时间差，能够将时间误差提升到0.1秒附近
             # 具体精度依赖获取京东服务器时间的网络时间损耗
